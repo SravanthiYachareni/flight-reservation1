@@ -1,20 +1,22 @@
 package com.sravs.reservation.entities;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
 
-
-import jakarta.persistence.Entity;
-
+import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
 
-public class Flight  extends  AbstractEntity{
+public class Flight extends AbstractEntity {
     private String flightNumber;
     private String operatingAirlines;
     private String departureCity;
     private String arrivalCity;
+
     private Date dateOfDeparture;
     private Timestamp estimatedDepartureTime;
 
