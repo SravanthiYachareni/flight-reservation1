@@ -8,6 +8,8 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.sravs.reservation.entities.Reservation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.FileNotFoundException;
@@ -16,8 +18,11 @@ import java.io.FileOutputStream;
 @Component
 
 public class PDFGenerator {
+    private static final Logger LOGGER = LoggerFactory.getLogger(PDFGenerator.class);
+
 
     public void generateItinerary(Reservation reservation,String filePath) {
+        LOGGER.info("generateItinerary");
         Document document = new Document();
         try {
             PdfWriter.getInstance(document, new FileOutputStream(filePath));

@@ -1,5 +1,8 @@
 package com.sravs.reservation.util;
 
+import com.sravs.reservation.services.ReservationServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -14,7 +17,9 @@ public class EmailUtil {
 
     @Autowired
     private JavaMailSender sender;
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmailUtil.class);
     public  void sendItinerary(String toAddress,String filePath) {
+        LOGGER.info("Inside sendItinerary() ");
         MimeMessage message = sender.createMimeMessage();
 
         try {
@@ -25,7 +30,7 @@ public class EmailUtil {
             messageHelper.addAttachment("Itinearary", new File(filePath));
             sender.send(message);
         } catch (MessagingException e) {
-           e.printStackTrace();
+          LOGGER.error("Exception inside sendItinerary"+e);
         }
     }
 
